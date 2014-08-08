@@ -1,4 +1,4 @@
 Agda-PR
 =======
 
-Agda proof reconstruction
+Agda proof reconstruction.
