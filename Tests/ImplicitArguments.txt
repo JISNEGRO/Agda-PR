@@ -1,0 +1,15 @@
+fof(c_0_1, axiom, (a=b), file('/tmp/ImplicitArguments/26-prf.tptp', n8_60938615)).
+fof(c_0_2, conjecture, (![X1]:b=a), file('/tmp/ImplicitArguments/26-prf.tptp', n13_60938615)).
+fof(c_0_3, negated_conjecture, (~(![X1]:b=a)),inference(assume_negation, [status(cth)],[c_0_2])).
+cnf(c_0_4,plain,(a=b),inference(split_conjunct, [status(thm)],[c_0_1])).
+fof(c_0_5, negated_conjecture, (?[X1]:b!=a),inference(fof_nnf, [status(thm)],[c_0_3])).
+fof(c_0_6, negated_conjecture, (?[X2]:b!=a),inference(variable_rename, [status(thm)],[c_0_5])).
+fof(c_0_7, negated_conjecture, (b!=a),inference(skolemize, [status(esa)], [c_0_6])).
+cnf(c_0_8,negated_conjecture,(b!=a),inference(split_conjunct, [status(thm)],[c_0_7])).
+cnf(c_0_9,plain,(b=a), c_0_4,['eval']).
+cnf(c_0_10,negated_conjecture,(b!=a), c_0_8,['eval']).
+cnf(c_0_11,plain,(b=a), c_0_9,['new_given']).
+cnf(c_0_12,negated_conjecture,($false),inference(rw, [status(thm)],[c_0_10,c_0_11,theory(equality)])).
+cnf(c_0_13,negated_conjecture,($false),inference(cn,[status(thm)],[c_0_12, theory(equality,[symmetry])])).
+cnf(c_0_14,negated_conjecture,($false), c_0_13,['proof']).
+

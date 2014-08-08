@@ -1,0 +1,102 @@
+
+./TestTPTP.hs,29
+module TestTPTPTestTPTP0,1
+
+./Main.hs,2807
+module Main Main6,7
+--fileName --fileName17,18
+fileName fileName23,24
+main main26,27
+toAgda toAgda34,35
+--toAgda --toAgda35,36
+toAgda toAgda36,37
+getString getString38,39
+getString getString39,40
+toRole toRole41,42
+toRole toRole42,43
+toName toName44,45
+toName toName45,46
+toComment toComment47,48
+toComment toComment48,49
+toAnnotations toAnnotations50,51
+toAnnotations toAnnotations51,52
+getAnnotations getAnnotations53,54
+getAnnotations getAnnotations54,55
+getGeneralTerm getGeneralTerm57,58
+getGeneralTerm getGeneralTerm58,59
+getGData getGData62,63
+getGData getGData63,64
+getData getData66,67
+getUsefulInfo getUsefulInfo70,71
+getUsefulInfo getUsefulInfo71,72
+getPredApp getPredApp75,76
+getPredApp getPredApp76,77
+--getPredApp --getPredApp78,79
+getTerms getTerms80,81
+getTerms getTerms81,82
+getBinOps getBinOps88,89
+getBinOps getBinOps89,90
+reWriteBinOps reWriteBinOps96,97
+reWriteBinOps reWriteBinOps97,98
+data AgdaSymbol AgdaSymbol101,102
+data AgdaSymbol = StringString101,102
+rw rw104,105
+rw rw105,106
+showF showF109,110
+showF showF110,111
+pStr pStr117,118
+pStr pStr118,119
+filterBool filterBool124,125
+filterBool filterBool125,126
+showP showP130,131
+showP showP131,132
+showT:showT135,136
+showT showT136,137
+--showTs --showTs142,143
+showTs showTs143,144
+showTS showTS145,146
+showV showV148,149
+showV showV149,150
+showVs showVs151,152
+showVs showVs152,153
+quantToAgda quantToAgda156,157
+quantToAgda quantToAgda157,158
+showAW showAW161,162
+showAW showAW162,163
+removeWord removeWord164,165
+removeWord removeWord165,166
+removeWord2 removeWord2168,169
+removeWord2 removeWord2169,170
+rwAW rwAW174,175
+rwAW rwAW175,176
+getT getT178,179
+getF getF180,181
+--getBinOpsF --getBinOpsF182,183
+getBinOpsF getBinOpsF183,184
+getRun getRun185,186
+--getOps --getOps191,192
+getOps getOps192,193
+printLine printLine200,201
+printLine printLine201,202
+getFormula getFormula203,204
+--printFormula --printFormula206,207
+countLines countLines209,210
+countLines countLines210,211
+cleanFile cleanFile213,214
+cleanFile cleanFile214,215
+removeHaskellComments removeHaskellComments220,221
+removeHaskellComments removeHaskellComments221,222
+removeComments removeComments224,225
+removeComments removeComments225,226
+removeEmptyLines removeEmptyLines228,229
+removeEmptyLines removeEmptyLines229,230
+splitLines splitLines233,234
+splitLines splitLines234,235
+data TPTP TPTP242,243
+data TPTP = TPTP TPTP242,243
+data TPTP = TPTP { clauseType clauseType242,243
+                 , numberLine numberLine243,244
+                 , expression expression244,245
+type NumberLine NumberLine248,249
+type Type Type249,250
+type Expression Expression250,251

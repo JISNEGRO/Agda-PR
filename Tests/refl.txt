@@ -1,0 +1,9 @@
+fof(c_0_1, conjecture, (![X1]:![X2]:![X3]:![X4]:![X5]:![X6]:![X7]:![X8]:![X9]:![X10]:![X11]:(kp11_(cP,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11)=>kp11_(cP,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11))), file('/tmp/P11/14-P-refl.tptp', n14_233316177)).
+fof(c_0_2, negated_conjecture, (~(![X1]:![X2]:![X3]:![X4]:![X5]:![X6]:![X7]:![X8]:![X9]:![X10]:![X11]:(kp11_(cP,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11)=>kp11_(cP,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11)))),inference(assume_negation, [status(cth)],[c_0_1])).
+fof(c_0_3, negated_conjecture, (~(![X1]:![X2]:![X3]:![X4]:![X5]:![X6]:![X7]:![X8]:![X9]:![X10]:![X11]:$true)),inference(fof_simplification, [status(thm)],[c_0_2])).
+fof(c_0_4, negated_conjecture, (?[X1]:?[X2]:?[X3]:?[X4]:?[X5]:?[X6]:?[X7]:?[X8]:?[X9]:?[X10]:?[X11]:~$true),inference(fof_nnf, [status(thm)],[c_0_3])).
+fof(c_0_5, negated_conjecture, (?[X12]:?[X13]:?[X14]:?[X15]:?[X16]:?[X17]:?[X18]:?[X19]:?[X20]:?[X21]:?[X22]:~$true),inference(variable_rename, [status(thm)],[c_0_4])).
+fof(c_0_6, negated_conjecture, (~$true),inference(skolemize, [status(esa)], [c_0_5])).
+cnf(c_0_7,negated_conjecture,($false),inference(split_conjunct, [status(thm)],[c_0_6])).
+cnf(c_0_8,negated_conjecture,($false), c_0_7,['eval']).
+cnf(c_0_9,negated_conjecture,($false), c_0_8,['proof']).

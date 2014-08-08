@@ -1,0 +1,7 @@
+fof(c_0_1, conjecture, (((kp1_(cP,a)|kp1_(cP,a))=>(kp1_(cP,a)|kp1_(cP,a)))), file('/tmp/PropositionalFunction3/20-foo.tptp', n7_269912604)).
+fof(c_0_2, negated_conjecture, (~(((kp1_(cP,a)|kp1_(cP,a))=>(kp1_(cP,a)|kp1_(cP,a))))),inference(assume_negation, [status(cth)],[c_0_1])).
+fof(c_0_3, negated_conjecture, (~$true),inference(fof_simplification, [status(thm)],[c_0_2])).
+cnf(c_0_4,negated_conjecture,($false),inference(split_conjunct, [status(thm)],[c_0_3])).
+cnf(c_0_5,negated_conjecture,($false), c_0_4,['eval']).
+cnf(c_0_6,negated_conjecture,($false), c_0_5,['proof']).
+

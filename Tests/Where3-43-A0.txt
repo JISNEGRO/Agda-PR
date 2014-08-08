@@ -1,0 +1,26 @@
+fof(c_0_1, axiom, (![X1]:n43(zero,X1)=X1), file('/tmp/Where3/Helper/43-A0.tptp', n22_188531139)).
+fof(c_0_2, axiom, (![X1]:![X2]:n43(succ(X1),X2)=succ(n43(X1,X2))), file('/tmp/Where3/Helper/43-A0.tptp', n25_188531139)).
+fof(c_0_3, conjecture, (![X1]:(kp1_(cN,X1)=>n43(zero,zero)=zero)), file('/tmp/Where3/Helper/43-A0.tptp', n32_188531139)).
+fof(c_0_4, negated_conjecture, (~(![X1]:(kp1_(cN,X1)=>n43(zero,zero)=zero))),inference(assume_negation, [status(cth)],[c_0_3])).
+fof(c_0_5, plain, (![X2]:n43(zero,X2)=X2),inference(variable_rename, [status(thm)],[c_0_1])).
+cnf(c_0_6,plain,(n43(zero,X1)=X1),inference(split_conjunct, [status(thm)],[c_0_5])).
+fof(c_0_7, plain, (![X3]:![X4]:n43(succ(X3),X4)=succ(n43(X3,X4))),inference(variable_rename, [status(thm)],[c_0_2])).
+cnf(c_0_8,plain,(n43(succ(X1),X2)=succ(n43(X1,X2))),inference(split_conjunct, [status(thm)],[c_0_7])).
+fof(c_0_9, negated_conjecture, (?[X1]:(kp1_(cN,X1)&n43(zero,zero)!=zero)),inference(fof_nnf, [status(thm)],[c_0_4])).
+fof(c_0_10, negated_conjecture, ((?[X1]:kp1_(cN,X1)&n43(zero,zero)!=zero)),inference(shift_quantors, [status(thm)],[c_0_9])).
+fof(c_0_11, negated_conjecture, ((?[X2]:kp1_(cN,X2)&n43(zero,zero)!=zero)),inference(variable_rename, [status(thm)],[c_0_10])).
+fof(c_0_12, negated_conjecture, ((kp1_(cN,esk1_0)&n43(zero,zero)!=zero)),inference(skolemize, [status(esa)], [c_0_11])).
+cnf(c_0_13,negated_conjecture,(n43(zero,zero)!=zero),inference(split_conjunct, [status(thm)],[c_0_12])).
+cnf(c_0_14,negated_conjecture,(kp1_(cN,esk1_0)),inference(split_conjunct, [status(thm)],[c_0_12])).
+cnf(c_0_15,negated_conjecture,(kp1_(cN,esk1_0)), c_0_14,['eval']).
+cnf(c_0_16,plain,(n43(zero,X1)=X1), c_0_6,['eval']).
+cnf(c_0_17,negated_conjecture,(n43(zero,zero)!=zero), c_0_13,['eval']).
+cnf(c_0_18,plain,(succ(n43(X1,X2))=n43(succ(X1),X2)), c_0_8,['eval']).
+cnf(c_0_19,negated_conjecture,(kp1_(cN,esk1_0)), c_0_15,['new_given']).
+cnf(c_0_20,plain,(n43(zero,X1)=X1), c_0_16,['new_given']).
+cnf(c_0_21,plain,(succ(n43(X1,X2))=n43(succ(X1),X2)), c_0_18,['new_given']).
+cnf(c_0_22,plain,(succ(X1)=n43(succ(zero),X1)),inference(pm,[status(thm)],[c_0_21,c_0_20,theory(equality)])).
+cnf(c_0_23,plain,(n43(succ(zero),X1)=succ(X1)), c_0_22,['eval']).
+cnf(c_0_24,negated_conjecture,($false),inference(rw, [status(thm)],[c_0_17,c_0_20,theory(equality)])).
+cnf(c_0_25,negated_conjecture,($false),inference(cn,[status(thm)],[c_0_24, theory(equality,[symmetry])])).
+cnf(c_0_26,negated_conjecture,($false), c_0_25,['proof']).
