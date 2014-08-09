@@ -28,18 +28,23 @@ main = do
 
   content <- parseFile fileName
   toAgda content
-
+  --putStr (prettySimple content)
+--  toName content
   return ()
-
 
 -- Translates a list of TPTP Input into an string representation in Agda.
 --  Need to verify the Agda Syntax!!
 toAgda :: [TPTP_Input] -> IO [()]
 toAgda = mapM (printLine . getString) 
 
-getString :: TPTP_Input -> String 
-getString i = (showF . getF . formula) i ++ " --(" ++ (unrole . role) i ++ ")"  ++ " (" ++ showAW ( name i) ++ ")"
 
+
+-- Need to work on getting the annotations
+getString :: TPTP_Input -> String 
+getString input = (showF . getF . formula) input  ++ " --(" ++ (unrole . role) input ++ ")"  ++ " (" ++ showAW ( name input) ++ ")" ++ " Annotations: " ++ (getAnnotations . annotations) input
+
+
+-- Helper functions to decompose the entries into specific terms. The term is indicated by the function name. E.g: toName extracts the name of the formula or term
 toRole :: [TPTP_Input] -> IO [()]
 toRole input = mapM (printLine . unrole . role ) input
 
@@ -62,7 +67,7 @@ getGeneralTerm (GTerm gd) = getGData gd
 getGeneralTerm (GList gts) = unwords $ map getGeneralTerm gts
 
 getGData :: GData -> String
-getGData (GWord gw) = showAW gw
+getGData (GWord aw) = showAW aw
 getGData (GApp aw gts) = showAW aw ++ "," ++ unwords ( map getGeneralTerm gts)
 getGData (GVar v) = show v
 getData (GNumber n) = show n
@@ -72,7 +77,6 @@ getData (GFormulaData s f) = show s ++ showF ( getF f)
 getUsefulInfo :: UsefulInfo  -> String
 getUsefulInfo (NoUsefulInfo) = "No useful info"
 getUsefulInfo (UsefulInfo gs) = intercalate ","  $ map  show gs
-
 
 getPredApp :: Formula0 (T Identity) (F Identity) -> [AtomicWord]
 getPredApp (PredApp aw ts) = [aw]
@@ -102,16 +106,25 @@ reWriteBinOps (x:xs) =  [rw x] ++ reWriteBinOps xs
 
 data AgdaSymbol = String
                 deriving (Show)
-                         
+
+
+-- Rewrites the binary operators to agda representation                         
 rw :: BinOp -> String
 rw (:|:) =  " ∨ "
 rw (:=>:) = " ⇒ "
 rw (:&:) = " ∧ "
+rw (:~&:) = " ¬∧ "
+rw (:<~>:) = " XOR "    
+rw (:<=>:) = " ≡ "
+rw (:<=:) = " ← "   
+
+showFormula = showF . getF
+
 
 showF :: Formula0 (T Identity) (F Identity) -> String
 showF (BinOp f1 op f2) = "(" ++ showF (getF f1) ++  (rw (op))  ++ showF (getF f2) ++ ")"
 showF (InfixPred t1 pred t2) = showT  (getT t1) ++ showP pred ++ showT (getT t2)
-showF (Quant quant vs f) = quantToAgda quant vs  ++  showF (getF f) 
+showF (Quant quant vs f) = quantToAgda quant vs  ++  showFormula f 
 showF ((:~:) f) = "¬(" ++ showF (getF f) ++ ")"
 showF (PredApp aw ts) =  showAW aw  ++  pStr  ( "(" ++  intercalate "," ( map (showT. getT) ts) ++ ")" ) 
 
@@ -190,23 +203,10 @@ getRun f = case f  of
               --Identity h -> i
               --BinOp t1 op t2 -> 3
 
---getOps :: Formula0  -> Int
-getOps  runF f  =   case f  of
-             BinOp t1 op t2 -> "4"
-             InfixPred t1 pred t2 -> "3"  
-             PredApp ap ts -> "2"
-             Quant q ts f-> "5"
-             (:~:) f ->"6"
-             --F g ->  runF f
-
 printLine :: String -> IO ()
 printLine  = putStrLn 
 
 getFormula list index = formula $  (list !! index)
-
-
---printFormula = (print . formula )
-
 
 countLines :: [String] → Int
 countLines list = length list
@@ -214,8 +214,6 @@ countLines list = length list
 
 cleanFile :: [String] -> [String]
 cleanFile = removeHaskellComments . removeEmptyLines 
-
-
 
 
 -- Removes haskell line comments which start with '#'
